@@ -18,6 +18,9 @@ dependencies = [
 ]
 requires-python = ">=3.8.10"
 
+[project.optional-dependencies]
+dev = ["pip-tools", "pytest"]
+
 [project.scripts]
 layoutimg = "layoutimg.__main__:main"
 
@@ -27,3 +30,9 @@ repository    = "https://github.com/dirckvdende/layout-image"
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["layoutimg*"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = [
+    "tests",
+]
