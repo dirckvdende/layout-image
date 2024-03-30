@@ -56,6 +56,9 @@ class ImageRenderer:
         """ The height of the image """
         return self._image.height
 
+    def __eq__(self, other: object):
+        return self.__class__ == other.__class__ and self.image == other.image
+
     def _load_font(self, font: 'str | None' = None):
         """ Load a font based on the path given and return the font object.
             Could also be None, which will return None """

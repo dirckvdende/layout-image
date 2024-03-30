@@ -8,7 +8,7 @@ def test_multiple_rect():
     rA.draw_rect(50, 50, 100, 100, color="black")
     rB.draw_rect(50, 50, 100, 50, color="black")
     rB.draw_rect(50, 100, 100, 50, color="black")
-    assert rA.image == rB.image
+    assert rA == rB
 
 def test_render_text():
     r = ImageRenderer()
