@@ -34,12 +34,15 @@ class ImageRenderer:
     def draw_text(self, x: int, y: int, text: str, *, font: 'str | None' = None,
     color: str = "black", font_size: int = 64):
         """ Draw text to the image, given the coordinates of the top left corner
-            and width and height of the rectangle """
+            and the text to draw. A font, font size and color can also be
+            provided. Returns the bounding box of the text as (x, y, dx, dy) """
         font_data = self._load_font(font)
         args = {"xy": (x, y), "text": text, "font": font_data,
         "font_size": font_size}
-        self._expand_image(*self._bbox_convert(self._draw.textbbox(**args)))
+        bbox = self._bbox_convert(self._draw.textbbox(**args))
+        self._expand_image(*bbox)
         self._draw.text(**args, fill=color)
+        return bbox
 
     @property
     def image(self):

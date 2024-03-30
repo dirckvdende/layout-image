@@ -1,7 +1,7 @@
 
 from importlib import resources
 import tomli
-from . import arith
+from .layoutimg import LayoutImage
 
 __version__ = "1.0.0"
 
