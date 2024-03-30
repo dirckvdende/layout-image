@@ -56,7 +56,8 @@ class ImageRenderer:
         """ The height of the image """
         return self._image.height
 
-    def __eq__(self, other: object):
+    def __eq__(self, other: object) -> bool:
+        """ Check if two drawings are the same (pixels are equal) """
         return self.__class__ == other.__class__ and self.image == other.image
 
     def _load_font(self, font: 'str | None' = None):
