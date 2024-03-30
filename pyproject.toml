@@ -1,0 +1,29 @@
+
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "layout-image"
+version = "1.0.0"
+description = "A package for creating basic images with XML layouts"
+readme = "README.md"
+authors = [
+    { name = "Dirck van den Ende" }
+]
+license = { file = "LICENSE" }
+keywords = [ "image", "layout" ]
+dependencies = [
+    "tomli"
+]
+requires-python = ">=3.8.10"
+
+[project.scripts]
+layoutimg = "layoutimg.__main__:main"
+
+[project.urls]
+repository    = "https://github.com/dirckvdende/layout-image"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["layoutimg*"]
