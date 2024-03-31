@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<image>
+    <row font-size="20"><text>Hello World!</text></row>
+    <row><text>Hello</text></row>
+    <row font-size="100"><text>World</text></row>
+</image>
