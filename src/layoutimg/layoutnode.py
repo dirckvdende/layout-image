@@ -33,7 +33,7 @@ class LayoutNode:
         if self._parent is not None:
             self.env.inherit(self._parent.env)
         for child in self:
-            child.propagate_inherit(self)
+            child.propagate_inherit()
 
     def propagate_pos(self, pos: 'tuple[int, int]' = (0, 0)):
         """ Determine size and position of this node and all child nodes, given
@@ -105,5 +105,7 @@ class LayoutNode:
             element. This function should only be called if the variable has
             "auto" as a value """
         text = "" if self.node.text is None else self.node.text
-        bbox = _bbox_renderer.draw_text(*self.pos, text, only_bbox=True)
-        self.size = bbox[2:4]
+        font_size = 64
+        bbox = _bbox_renderer.draw_text(*self.pos, text, only_bbox=True,
+        font_size=font_size)
+        self.size = (bbox[2], font_size)
