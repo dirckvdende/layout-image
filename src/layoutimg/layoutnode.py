@@ -111,7 +111,10 @@ class LayoutNode:
         bbox = _bbox_renderer.draw_text(*self.pos, text, only_bbox=True,
         font_size=font_size)
         font_height = int(font_size * 1.35)
-        self.size = (bbox[2], font_height)
+        if name == "width":
+            self.size = (bbox[2], self.size[1])
+        else:
+            self.size = (self.size[0], font_height)
 
     def _process_attributes(self):
         """ Process the attributes of the XML node and set them as environment
