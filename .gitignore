@@ -1,3 +1,5 @@
+# Generated examples
+examples/*.png
 # Auto-generated requirements.txt (should be set in pyproject.toml)
 requirements.txt
 
