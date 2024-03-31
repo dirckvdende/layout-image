@@ -38,7 +38,7 @@ class ImageRenderer:
             provided. Returns the bounding box of the text as (x, y, dx, dy).
             Optioanlly an argument can be given to only return the bounding box
             """
-        font_data = self._load_font(font)
+        font_data = self._load_font(font, font_size)
         args = {"xy": (x, y), "text": text, "font": font_data,
         "font_size": font_size}
         bbox = self._bbox_convert(self._draw.textbbox(**args))
@@ -67,12 +67,12 @@ class ImageRenderer:
         """ Check if two drawings are the same (pixels are equal) """
         return self.__class__ == other.__class__ and self.image == other.image
 
-    def _load_font(self, font: 'str | None' = None):
+    def _load_font(self, font: 'str | None' = None, font_size: int = 64):
         """ Load a font based on the path given and return the font object.
             Could also be None, which will return None """
         if font is None:
             return None
-        return ImageFont.load(font)
+        return ImageFont.truetype(font, size=font_size)
     
     def _bbox_convert(self, bbox: 'tuple[int, int, int, int]'):
         """ Convert a PIL bounding box to a bounding box of the form
