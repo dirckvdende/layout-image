@@ -69,10 +69,14 @@ class ImageRenderer:
 
     def _load_font(self, font: 'str | None' = None, font_size: int = 64):
         """ Load a font based on the path given and return the font object.
-            Could also be None, which will return None """
+            Could also be None, which will return None. If the font is not
+            found, None is returned as well """
         if font is None:
             return None
-        return ImageFont.truetype(font, size=font_size)
+        try:
+            return ImageFont.truetype(font, size=font_size)
+        except OSError:
+            return None
     
     def _bbox_convert(self, bbox: 'tuple[int, int, int, int]'):
         """ Convert a PIL bounding box to a bounding box of the form

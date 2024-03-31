@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<image font-size="50">
+    <!-- Top bar of the card -->
+    <row background-color="green" width="1200">
+        <row height="30"></row>
+        <row>
+            <col width="310"></col>
+            <col><text font-size="94" text-color="white">User: FluffyCat</text></col>
+        </row>
+        <row height="30"></row>
+    </row>
+    <row height="20"></row>
+    <row>
+        <col width="50"></col>
+        <col>
+            <row><text>Chat messages:</text></row>
+            <row><text>Handle:</text></row>
+            <row><text>Games played:</text></row>
+            <row><text>Kills:</text></row>
+            <row><text>Deaths:</text></row>
+            <row><text>Distance walked:</text></row>
+        </col>
+        <col width="200"></col>
+        <col>
+            <row><text>435</text></row>
+            <row><text>@_FluffyCat1234</text></row>
+            <row><text>12</text></row>
+            <row><text>0</text></row>
+            <row><text>32</text></row>
+            <row><text>14,231 m</text></row>
+        </col>
+        <col width="50"></col>
+    </row>
+    <row height="20" width="20" background-color="white"></row>
+</image>

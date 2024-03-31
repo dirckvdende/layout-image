@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<image>
+    <row><text text-color="red">Hello World!</text></row>
+    <row><text text-color="blue">Hello World!</text></row>
+    <row><text text-color="green">Hello World!</text></row>
+</image>
