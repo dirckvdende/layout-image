@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<image>
+    <row>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+    </row>
+    <row>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+    </row>
+    <row>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+    </row>
+    <row>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+    </row>
+    <row>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+    </row>
+    <row>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+    </row>
+    <row>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+    </row>
+    <row>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+        <col width="30" height="30" background-color="white"></col>
+        <col width="30" height="30" background-color="black"></col>
+    </row>
+</image>
