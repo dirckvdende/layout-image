@@ -58,13 +58,13 @@ class LayoutNode:
     def draw(self, renderer: ImageRenderer):
         """ Draw the current layout node and its descendents to the given
             renderer """
-        # TODO: Implement rendering
+        # Background color
         if self.env["background-color"] != "none":
             renderer.draw_rect(*self.pos, *self.size,
             color=self.env["background-color"])
+        # Rendering text
         if self.env["render-text"] == "true":
-            text = "" if self.node.text is None else self.node.text
-            renderer.draw_text(*self.pos, text)
+            self._draw_text(renderer, only_bbox=False)
         for child in self:
             child.draw(renderer)
 
@@ -106,15 +106,11 @@ class LayoutNode:
         """ Modify self.size based on the size of the text contained in this
             element. This function should only be called if the variable has
             "auto" as a value """
-        text = "" if self.node.text is None else self.node.text
-        font_size = 64
-        bbox = _bbox_renderer.draw_text(*self.pos, text, only_bbox=True,
-        font_size=font_size)
-        font_height = int(font_size * 1.35)
         if name == "width":
+            bbox = self._draw_text(_bbox_renderer, only_bbox=True)
             self.size = (bbox[2], self.size[1])
         else:
-            self.size = (self.size[0], font_height)
+            self.size = (self.size[0], self._font_height)
 
     def _process_attributes(self):
         """ Process the attributes of the XML node and set them as environment
@@ -123,3 +119,21 @@ class LayoutNode:
             if name not in self.env:
                 raise AttributeError(f"The attribute {name} is not valid")
             self.env[name] = value
+
+    def _draw_text(self, renderer: ImageRenderer, only_bbox: bool = False):
+        """ Render text in this node to the given renderer. Returns the bounding
+            box of the text as (x, y, dx, dy). Optionally, only the bounding box
+            can be determined without drawing """
+        text = "" if self.node.text is None else self.node.text
+        bbox = renderer.draw_text(*self.pos, text,
+            font = None if self.env["font"] == "default" else self.env["font"],
+            font_size = int(self.env["font-size"]),
+            color = self.env["text-color"],
+            only_bbox = only_bbox
+        )
+        return bbox
+    
+    @property
+    def _font_height(self):
+        """ The font height in this element, which is larger than font size """
+        return int(int(self.env["font-size"]) * 1.35)
