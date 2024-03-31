@@ -20,6 +20,7 @@ class LayoutNode:
         self.node = node
         self.env = LayoutEnv()
         self.env.set_defauts(node.tag)
+        self._process_attributes()
         self.children = [LayoutNode(child, self) for child in self.node]
         self.size: 'tuple[int, int]' = (0, 0)
         self.pos: 'tuple[int, int]' = (-1, -1)
@@ -108,4 +109,13 @@ class LayoutNode:
         font_size = 64
         bbox = _bbox_renderer.draw_text(*self.pos, text, only_bbox=True,
         font_size=font_size)
-        self.size = (bbox[2], font_size)
+        font_height = int(font_size * 1.35)
+        self.size = (bbox[2], font_height)
+
+    def _process_attributes(self):
+        """ Process the attributes of the XML node and set them as environment
+            variables """
+        for name, value in self.node.attrib.items():
+            if name not in self.env:
+                raise AttributeError(f"The attribute {name} is not valid")
+            self.env[name] = value

@@ -25,6 +25,9 @@ class LayoutEnv:
         """ Iterator over environment variables """
         yield from self._vars
 
+    def __contains__(self, name: str):
+        return name in self._vars
+
     def inherit(self, parent_env: 'LayoutEnv'):
         """ Process environment inheritence by replacing all "inherit" values in
             the current environment with ones from the given parent environment
