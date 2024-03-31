@@ -98,7 +98,8 @@ class LayoutNode:
             self._edit_size_text(name)
             return
         for child in self:
-            size[index] += child.size[index]
+            size[index] = max(size[index], child.pos[index] + child.size[index]
+            - self.pos[index])
         self.size = size
 
     def _edit_size_text(self, name: 'Literal["width", "height"]'):
