@@ -25,8 +25,10 @@ def test_different_spacing():
     assert xml_to_renderer(textA) == xml_to_renderer(textB)
 
 def test_double_row_height():
-    textA = "<image><row background-color='blue'><text>A</text></row></image>"
-    textB = """<image>
+    textA = """<image width='200'>
+        <row background-color='blue'><text>A</text></row>
+    </image>"""
+    textB = """<image width='200'>
         <row background-color='blue'><text>A</text></row>
         <row background-color='blue'><text>B</text></row>
     </image>"""
