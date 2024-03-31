@@ -21,9 +21,6 @@ class LayoutEnv:
         """ Set an environment variable """
         self._vars[name] = value
 
-    __getattr__ = __getitem__
-    __setattr__ = __setitem__
-
     def __iter__(self):
         """ Iterator over environment variables """
         yield from self._vars
