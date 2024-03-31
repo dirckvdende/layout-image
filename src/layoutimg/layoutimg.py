@@ -29,6 +29,10 @@ class LayoutImage:
             raise RuntimeError("Cannot call `save` before `generate`")
         self._renderer.save(filename)
 
+    def __eq__(self, other: object):
+        """ Check if two layout images are the same """
+        return self.__class__ == other.__class__ and self._xml == other._xml
+
     def _parse_xml(self):
         """ Parse the stored XML text and return the generated element tree """
         return ElementTree.fromstring(self._text)
