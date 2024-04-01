@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<image>
+    <row width="700" background-color="blue">
+        <text text-align="left" text-color="white">Hello World!</text>
+    </row>
+</image>

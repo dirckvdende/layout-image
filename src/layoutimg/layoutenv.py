@@ -1,6 +1,4 @@
 
-from typing import Any
-
 class LayoutEnv:
     """ An environment which keeps track of  """
 
@@ -45,7 +43,12 @@ class LayoutEnv:
                 "font": "default",
                 "font-size": "64",
                 "height": "auto",
+                "max-height": "1000000",
+                "max-width": "1000000",
+                "min-height": "0",
+                "min-width": "0",
                 "render-text": "false",
+                "text-align": "left",
                 "text-color": "black",
                 "width": "auto",
             },
@@ -55,7 +58,12 @@ class LayoutEnv:
                 "font": "inherit",
                 "font-size": "inherit",
                 "height": "auto",
+                "max-height": "1000000",
+                "max-width": "1000000",
+                "min-height": "0",
+                "min-width": "0",
                 "render-text": "false",
+                "text-align": "inherit",
                 "text-color": "inherit",
                 "width": "100%",
             },
@@ -65,7 +73,12 @@ class LayoutEnv:
                 "font": "inherit",
                 "font-size": "inherit",
                 "height": "100%",
+                "max-height": "1000000",
+                "max-width": "1000000",
+                "min-height": "0",
+                "min-width": "0",
                 "render-text": "false",
+                "text-align": "inherit",
                 "text-color": "inherit",
                 "width": "auto",
             },
@@ -75,7 +88,12 @@ class LayoutEnv:
                 "font": "inherit",
                 "font-size": "inherit",
                 "height": "auto",
+                "max-height": "1000000",
+                "max-width": "1000000",
+                "min-height": "0",
+                "min-width": "100%",
                 "render-text": "true",
+                "text-align": "inherit",
                 "text-color": "inherit",
                 "width": "auto",
             }
