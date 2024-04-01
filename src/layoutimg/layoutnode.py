@@ -59,6 +59,8 @@ class LayoutNode:
     def draw(self, renderer: ImageRenderer):
         """ Draw the current layout node and its descendents to the given
             renderer """
+        # Expand image to include element
+        renderer.expand_image(*self.pos, *self.size)
         # Background color
         if self.env["background-color"] != "none":
             renderer.draw_rect(*self.pos, *self.size,
