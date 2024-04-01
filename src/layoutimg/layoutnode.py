@@ -78,8 +78,8 @@ class LayoutNode:
         if self.env[name] == "auto":
             self._clamp_size(name)
             return
-        size[index] = self._value_to_pixels(self.env[name],
-        self._parent.size[index])
+        parent_size = 0 if self._parent is None else self._parent.size[index]
+        size[index] = self._value_to_pixels(self.env[name], parent_size)
         self.size = tuple(size)
         self._clamp_size(name)
 
