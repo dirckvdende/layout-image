@@ -1,6 +1,4 @@
 
-from typing import Any
-
 class LayoutEnv:
     """ An environment which keeps track of  """
 
