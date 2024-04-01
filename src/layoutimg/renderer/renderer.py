@@ -28,7 +28,7 @@ class ImageRenderer:
             corner and width and height of the rectangle """
         if dx < 1 or dy < 1:
             return
-        self._expand_image(x, y, dx, dy)
+        self.expand(x, y, dx, dy)
         self._draw.rectangle((x, y, x + dx - 1, y + dy - 1), fill=color)
 
     def draw_text(self, x: int, y: int, text: str, *, font: 'str | None' = None,
@@ -44,7 +44,7 @@ class ImageRenderer:
         bbox = self._bbox_convert(self._draw.textbbox(**args))
         if only_bbox:
             return bbox
-        self._expand_image(*bbox)
+        self.expand(*bbox)
         self._draw.text(**args, fill=color)
         return bbox
 
@@ -83,7 +83,7 @@ class ImageRenderer:
             (x, y, dx, dy) """
         return bbox[0], bbox[1], bbox[2] - bbox[0] + 1, bbox[3] - bbox[1] + 1
 
-    def _expand_image(self, x: int, y: int, dx: int, dy: int):
+    def expand(self, x: int, y: int, dx: int, dy: int):
         """ Expand the image, given some bounding box that should be included in
             it. Note that negative coordinates will never be included """
         if not self.expand or dx < 1 or dy < 1:
