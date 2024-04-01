@@ -71,6 +71,19 @@ class LayoutNode:
         for child in self:
             child.draw(renderer)
 
+    def __repr__(self):
+        """ Get a debug representation of the layout tree """
+        return self._debug_string()
+    
+    def _debug_string(self, depth: int = 0):
+        """ Get a debug representation of the layout tree, given the current
+            depth of the node """
+        text = "| " * depth
+        text += f"<{self.node.tag}> pos={self.pos} size={self.size}\n"
+        for child in self:
+            text += child._debug_string(depth + 1)
+        return text
+
     def _edit_size_before_children(self, name: 'Literal["width", "height"]'):
         """ Modify self.size based on the size, without considering "auto".
             Given as an argument is whether the width or height should be edited
