@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<image font-size="50">
+    <!-- Top bar of the card -->
+    <row background-color="green" width="1200">
+        <row height="30"></row>
+        <row>
+            <col width="310"></col>
+            <col><text font-size="94" text-color="white">User: FluffyCat</text></col>
+        </row>
+        <row height="30"></row>
+    </row>
+</image>
