@@ -3,6 +3,7 @@ from typing import Literal
 from xml.etree.ElementTree import Element
 from .layoutenv import LayoutEnv
 from .renderer import ImageRenderer
+import math
 
 # A renderer only used to get the bounding box of some text
 _bbox_renderer = ImageRenderer()
@@ -64,7 +65,7 @@ class LayoutNode:
             color=self.env["background-color"])
         # Rendering text
         if self.env["render-text"] == "true":
-            self._draw_text(renderer, only_bbox=False)
+            self._draw_text(renderer)
         for child in self:
             child.draw(renderer)
 
@@ -75,15 +76,12 @@ class LayoutNode:
         index = 0 if name == "width" else 1
         size = list(self.size)
         if self.env[name] == "auto":
+            self._clamp_size(name)
             return
-        if self.env[name].endswith("%"):
-            # Pecentages
-            prop = float(self.env[name][:-1]) / 100
-            size[index] = int(prop * self._parent.size[index])
-        else:
-            # Raw numbers
-            size[index] = int(self.env[name])
-        self.size = size
+        size[index] = self._value_to_pixels(self.env[name],
+        self._parent.size[index])
+        self.size = tuple(size)
+        self._clamp_size(name)
 
     def _edit_size_after_children(self, name: 'Literal["width", "height"]'):
         """ Modify self.size based on the size, only considering "auto" and
@@ -96,21 +94,48 @@ class LayoutNode:
         assert self.env["render-text"] in ("true", "false")
         if self.env["render-text"] == "true":
             self._edit_size_text(name)
+            self._clamp_size(name)
             return
         for child in self:
             size[index] = max(size[index], child.pos[index] + child.size[index]
             - self.pos[index])
-        self.size = size
+        self.size = tuple(size)
+        self._clamp_size(name)
+
+    def _clamp_size(self, name: 'Literal["width", "height"]'):
+        """ Clamp the width and height of the element to the min and max values
+            in the environment """
+        index = 0 if name == "width" else 1
+        def clamp(val: int, mn: int, mx: int):
+            return max(mn, min(val, mx))
+        size = list(self.size)
+        parent_size = 0 if self._parent is None else self._parent.size[index]
+        mn = self._value_to_pixels(self.env[f"min-{name}"], parent_size)
+        mx = self._value_to_pixels(self.env[f"max-{name}"], parent_size)
+        size[index] = clamp(size[index], mn, mx)
+        self.size = tuple(size)
+
+    def _value_to_pixels(self, value: str, relative: int):
+        """ Convert a percentage or fixed value to a pixel count integer. The
+            relative size of the parent should be given for the case that the
+            value is a percentage """
+        if value.endswith("%"):
+            # Pecentages
+            prop = float(value[:-1]) / 100
+            return int(prop * relative)
+        # Raw numbers
+        return int(value)
 
     def _edit_size_text(self, name: 'Literal["width", "height"]'):
         """ Modify self.size based on the size of the text contained in this
             element. This function should only be called if the variable has
             "auto" as a value """
+        size = list(self.size)
         if name == "width":
-            bbox = self._draw_text(_bbox_renderer, only_bbox=True)
-            self.size = (bbox[2], self.size[1])
+            size[0] = max(size[0], self._text_dims()[0])
         else:
-            self.size = (self.size[0], self._font_height)
+            size[1] = max(size[1], self._font_height)
+        self.size = tuple(size)
 
     def _process_attributes(self):
         """ Process the attributes of the XML node and set them as environment
@@ -120,20 +145,44 @@ class LayoutNode:
                 raise AttributeError(f"The attribute {name} is not valid")
             self.env[name] = value
 
-    def _draw_text(self, renderer: ImageRenderer, only_bbox: bool = False):
+    def _draw_text(self, renderer: ImageRenderer):
         """ Render text in this node to the given renderer. Returns the bounding
-            box of the text as (x, y, dx, dy). Optionally, only the bounding box
-            can be determined without drawing """
-        text = "" if self.node.text is None else self.node.text
-        bbox = renderer.draw_text(*self.pos, text,
+            box of the text as (x, y, dx, dy) """
+        text_width = self._text_dims()[0]
+        align = self.env["text-align"]
+        if align not in ("left", "center", "right"):
+            raise ValueError(f"Value text-align cannot be \"{align}\"")
+        left_pad = {
+            "left": 0,
+            "center": max(0, self.size[0] - text_width) // 2,
+            "right": max(0, self.size[0] - text_width),
+        }[align]
+        bbox = renderer.draw_text(
+            x = self.pos[0] + left_pad,
+            y = self.pos[1],
+            text = self._text,
+            font = None if self.env["font"] == "default" else self.env["font"],
+            font_size = int(self.env["font-size"]),
+            color = self.env["text-color"]
+        )
+        return bbox
+    
+    def _text_dims(self):
+        """ Get the dimensions of the text in the element being drawn """
+        bbox = _bbox_renderer.draw_text(0, 0, self._text,
             font = None if self.env["font"] == "default" else self.env["font"],
             font_size = int(self.env["font-size"]),
             color = self.env["text-color"],
-            only_bbox = only_bbox
+            only_bbox = True
         )
-        return bbox
+        return bbox[2:]
     
     @property
     def _font_height(self):
         """ The font height in this element, which is larger than font size """
         return int(int(self.env["font-size"]) * 1.35)
+    
+    @property
+    def _text(self):
+        """ The text to be displayed in this element """
+        return "" if self.node.text is None else self.node.text
