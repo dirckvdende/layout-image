@@ -1,6 +1,5 @@
 
 import pytest
-import os
 import pathlib
 from layoutimg import LayoutImage
 
