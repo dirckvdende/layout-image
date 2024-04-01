@@ -13,3 +13,4 @@ def test_example(filename: str):
         text = f.read()
     image = LayoutImage(text)
     image.generate()
+    image.save(f"{filename}.png")
