@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<image>
+    <row width="200" height="70" background-image="examples/image-import/Hello-World.png"></row>
+    <row width="200" height="150" background-image="examples/image-import/Hello-World.png"></row>
+</image>
