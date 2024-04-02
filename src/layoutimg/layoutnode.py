@@ -67,6 +67,10 @@ class LayoutNode:
         if self.env["background-color"] != "none":
             renderer.draw_rect(*self.pos, *self.size,
             color=self.env["background-color"])
+        # Background image
+        if self.env["background-image"] != "none":
+            renderer.draw_image(*self.pos, *self.size,
+            self.env["background-image"])
         # Rendering text
         if self.env["render-text"] == "true":
             self._draw_text(renderer)

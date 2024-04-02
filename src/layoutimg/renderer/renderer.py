@@ -29,7 +29,7 @@ class ImageRenderer:
         if dx < 1 or dy < 1:
             return
         self.expand_image(x, y, dx, dy)
-        self._draw.rectangle((x, y, x + dx - 1, y + dy - 1), fill=color)
+        self._draw.rectangle((x, y, x + dx, y + dy), fill=color)
 
     def draw_text(self, x: int, y: int, text: str, *, font: 'str | None' = None,
     color: str = "black", font_size: int = 64, only_bbox: bool = False):
@@ -47,6 +47,17 @@ class ImageRenderer:
         self.expand_image(*bbox)
         self._draw.text(**args, fill=color)
         return bbox
+
+    def draw_image(self, x: int, y: int, dx: int, dy: int, path: str):
+        """ Draw another image onto this image, given the coordinates of the top
+            left corner, the dimensions to draw and the path of the image to
+            draw """
+        if dx < 1 or dy < 1:
+            return
+        self.expand_image(x, y, dx, dy)
+        with Image.open(path) as image_file:
+            resized_image = image_file.resize((dx, dy))
+            self._image.paste(resized_image, (x, y, x + dx, y + dy))
 
     @property
     def image(self):
@@ -81,7 +92,7 @@ class ImageRenderer:
     def _bbox_convert(self, bbox: 'tuple[int, int, int, int]'):
         """ Convert a PIL bounding box to a bounding box of the form
             (x, y, dx, dy) """
-        return bbox[0], bbox[1], bbox[2] - bbox[0] + 1, bbox[3] - bbox[1] + 1
+        return bbox[0], bbox[1], bbox[2] - bbox[0], bbox[3] - bbox[1]
 
     def expand_image(self, x: int, y: int, dx: int, dy: int):
         """ Expand the image, given some bounding box that should be included in
