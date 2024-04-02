@@ -17,7 +17,7 @@ dependencies = [
     "tomli",
     "pillow"
 ]
-requires-python = ">=3.8.10"
+requires-python = ">=3.8"
 
 [project.optional-dependencies]
 dev = ["pip-tools", "pytest"]
