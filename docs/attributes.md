@@ -6,6 +6,7 @@ All attributes can be given the value `inherit` next to the possible values give
 | Name | Possible values | Description |
 | --- | --- | --- |
 | `background-color` | `none` or a color | Set the background color of an element. |
+| `background-image` | `none` or a path to an image | Set the background image of an element, which is drawn after the background color. |
 | `flow` | `none`, `x`, `y` or `xy` | How to continue rendering after current element has been rendered. Mainly intended for internal use. |
 | `font` | `default` or a `.ttf` file path | The font to give text in this element and its children. |
 | `font-size` | A value | The font size in pixels. |
