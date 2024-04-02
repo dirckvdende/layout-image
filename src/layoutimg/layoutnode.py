@@ -48,12 +48,12 @@ class LayoutNode:
         for child in self:
             child.propagate_pos(pos)
             # Update current position
-            if child.env["continue"] == "none":
+            if child.env["flow"] == "none":
                 continue
-            assert child.env["continue"] in ("x", "y", "xy")
-            if "x" in child.env["continue"]:
+            assert child.env["flow"] in ("x", "y", "xy")
+            if "x" in child.env["flow"]:
                 pos = (max(pos[0], child.pos[0] + child.size[0]), pos[1])
-            if "y" in child.env["continue"]:
+            if "y" in child.env["flow"]:
                 pos = (pos[0], max(pos[1], child.pos[1] + child.size[1]))
         for dim in ("width", "height"):
             self._edit_size_after_children(dim)

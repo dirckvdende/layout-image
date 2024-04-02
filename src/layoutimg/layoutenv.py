@@ -39,7 +39,7 @@ class LayoutEnv:
         values = {
             "image": {
                 "background-color": "none",
-                "continue": "none",
+                "flow": "none",
                 "font": "default",
                 "font-size": "64",
                 "height": "auto",
@@ -56,7 +56,7 @@ class LayoutEnv:
             },
             "row": {
                 "background-color": "none",
-                "continue": "y",
+                "flow": "y",
                 "font": "inherit",
                 "font-size": "inherit",
                 "height": "auto",
@@ -73,7 +73,7 @@ class LayoutEnv:
             },
             "col": {
                 "background-color": "none",
-                "continue": "x",
+                "flow": "x",
                 "font": "inherit",
                 "font-size": "inherit",
                 "height": "auto",
@@ -90,7 +90,7 @@ class LayoutEnv:
             },
             "text": {
                 "background-color": "none",
-                "continue": "xy",
+                "flow": "xy",
                 "font": "inherit",
                 "font-size": "inherit",
                 "height": "auto",
