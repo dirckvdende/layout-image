@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<image>
+    <row background-color="blue" text-color="white">
+        <text>Hello</text>
+    </row>
+    <row background-color="red" text-color="white" y="300">
+        <text>World!</text>
+    </row>
+</image>
