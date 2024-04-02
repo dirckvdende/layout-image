@@ -41,6 +41,8 @@ class LayoutNode:
         """ Determine size and position of this node and all child nodes, given
             the current position """
         self.pos = pos
+        self._set_custom_pos()
+        pos = self.pos
         for dim in ("width", "height"):
             self._edit_size_before_children(dim)
         for child in self:
@@ -50,9 +52,9 @@ class LayoutNode:
                 continue
             assert child.env["continue"] in ("x", "y", "xy")
             if "x" in child.env["continue"]:
-                pos = (pos[0] + child.size[0], pos[1])
+                pos = (max(pos[0], child.pos[0] + child.size[0]), pos[1])
             if "y" in child.env["continue"]:
-                pos = (pos[0], pos[1] + child.size[1])
+                pos = (pos[0], max(pos[1], child.pos[1] + child.size[1]))
         for dim in ("width", "height"):
             self._edit_size_after_children(dim)
 
@@ -83,6 +85,17 @@ class LayoutNode:
         for child in self:
             text += child._debug_string(depth + 1)
         return text
+
+    def _set_custom_pos(self):
+        """ If one or both attributes x and y are given, apply these values to
+            the position of the element """
+        for attr, index in (("x", 0), ("y", 1)):
+            if self.env[attr] == "auto":
+                continue
+            value = int(self.env[attr])
+            new_pos = list(self.pos)
+            new_pos[index] = value
+            self.pos = tuple(new_pos)
 
     def _edit_size_before_children(self, name: 'Literal["width", "height"]'):
         """ Modify self.size based on the size, without considering "auto".

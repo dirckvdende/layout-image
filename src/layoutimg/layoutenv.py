@@ -51,6 +51,8 @@ class LayoutEnv:
                 "text-align": "left",
                 "text-color": "black",
                 "width": "auto",
+                "x": "auto",
+                "y": "auto",
             },
             "row": {
                 "background-color": "none",
@@ -66,6 +68,8 @@ class LayoutEnv:
                 "text-align": "inherit",
                 "text-color": "inherit",
                 "width": "auto",
+                "x": "auto",
+                "y": "auto",
             },
             "col": {
                 "background-color": "none",
@@ -81,6 +85,8 @@ class LayoutEnv:
                 "text-align": "inherit",
                 "text-color": "inherit",
                 "width": "auto",
+                "x": "auto",
+                "y": "auto",
             },
             "text": {
                 "background-color": "none",
@@ -96,6 +102,8 @@ class LayoutEnv:
                 "text-align": "inherit",
                 "text-color": "inherit",
                 "width": "auto",
+                "x": "auto",
+                "y": "auto",
             }
         }
         if tag not in values:
