@@ -1,26 +1,39 @@
 
 [build-system]
-requires      = ["setuptools>=61.0.0", "wheel"]
+requires      = [
+    "setuptools>=61.0.0",
+    "wheel",
+]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "layout-image"
-version = "1.0.0"
+version = "0.2.0"
 description = "A package for creating basic images with XML layouts"
 readme = "README.md"
 authors = [
-    { name = "Dirck van den Ende" }
+    { name = "Dirck van den Ende" },
 ]
 license = { file = "LICENSE" }
-keywords = [ "image", "layout" ]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = [
+    "image", "layout", "XML", "design",
+]
 dependencies = [
     "tomli",
-    "pillow"
+    "pillow",
 ]
 requires-python = ">=3.8"
 
 [project.optional-dependencies]
-dev = ["pip-tools", "pytest"]
+dev = [
+    "pip-tools",
+    "pytest",
+]
 
 [project.scripts]
 layoutimg = "layoutimg.__main__:main"
