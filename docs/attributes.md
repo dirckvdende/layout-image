@@ -18,3 +18,5 @@ All attributes can be given the value `inherit` next to the possible values give
 | `text-align` | `left`, `center` or `right` | Where to align the text in the parent element. |
 | `text-color` | A color | The color to give the text in this element and its children. |
 | `width` | `auto`, a percentage or a value | Set the width of the element. For `auto` this is the width of the child elements combined. A percentage is a proportion of the parent. A value is in pixels. |
+| `x` | `auto` or a value | Fixes the (global) x-coordinate of the top-left corner of the element. |
+| `y` | `auto` or a value | Fixes the (global) y-coordinate of the top-left corner of the element. |
