@@ -48,6 +48,16 @@ class ImageRenderer:
         self._draw.text(**args, fill=color)
         return bbox
 
+    def draw_image(self, x: int, y: int, dx: int, dy: int, path: str):
+        """ Draw another image onto this image, given the coordinates of the top
+            left corner, the dimensions to draw and the path of the image to
+            draw """
+        if dx < 1 or dy < 1:
+            return
+        self.expand_image(x, y, dx, dy)
+        with Image.open(path) as image_file:
+            self._image.paste(image_file, (x, y, x + dx - 1, y + dy - 1))
+
     @property
     def image(self):
         """ Get the PIL image that is being drawn on """
