@@ -7,7 +7,7 @@ A python package for creating basic images with XML layouts.
 
 The package can be installed using the following command, which copies the GitHub repository:
 ```sh
-pip install git+https://github.com/dirckvdende/layout-image.git
+pip install layout-image
 ```
 
 ## Basic Example
